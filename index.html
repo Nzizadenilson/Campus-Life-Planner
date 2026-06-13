@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Life Planner</title>
+  </head>
+  <body>
+    <header>
+      <h1>Campus Life Planner</h1>
+    </header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#records">Records</a>
+      <a href="#addevent">Add Event</a>
+      <a href="#settings">Settings</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <p>Welcome to the Campus Life Planner! This is a simple application to help you manage your campus life.</p>
+            <p>Email: g.nziza@alustudent.com, Github: https://github.com/</p>
+        </section>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p></p>
+        </section>
+        <section id="records">
+            <h2>Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Due date</th>
+                        <th>Duration</th>
+                        <th>Tag</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+             
+        </section>
+        <section id="addevent">
+            <h2>Add Event</h2>
+            <form id="eventForm">
+                <label for="event">Event:</label>
+                <input type="text" id="event" name="event" required><br><br>
+                <label for="dueDate">Due Date:</label>
+                <input type="date" id="dueDate" name="dueDate" required><br><br>
+                <label for="duration">Duration:</label>
+                <input type="text" id="duration" name="duration" required><br><br>
+                <label for="tag">Tag:</label>
+                <input type="text" id="tag" name="tag"><br><br>
+                <button type="submit" id="submitbtn">Add Event</button>
+            </form>
+        </section>
+        <section id="settings">
+            <h2>Settings</h2>
+            <p></p>
+        </section>
+                
+    </main>
+  </body>
+</html>
