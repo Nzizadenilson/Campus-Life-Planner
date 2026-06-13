@@ -4,29 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <header>
+    <header id="header">
       <h1>Campus Life Planner</h1>
     </header>
-    <nav>
+    <nav >
       <a href="#about">About</a>
       <a href="#dashboard">Dashboard</a>
       <a href="#records">Records</a>
       <a href="#addevent">Add Event</a>
       <a href="#settings">Settings</a>
     </nav>
-    <main>
-        <section id="about">
+    <main id="main">
+        <section id="about" class="card">
             <h2>About</h2>
             <p>Welcome to the Campus Life Planner! This is a simple application to help you manage your campus life.</p>
             <p>Email: g.nziza@alustudent.com, Github: https://github.com/</p>
         </section>
-        <section id="dashboard">
+        <section id="dashboard" class="card">
             <h2>Dashboard</h2>
             <p></p>
         </section>
-        <section id="records">
+        <section id="records" class="card">
             <h2>Records</h2>
             <table>
                 <thead>
@@ -42,7 +43,7 @@
             </table>
              
         </section>
-        <section id="addevent">
+        <section id="addevent" class="card">
             <h2>Add Event</h2>
             <form id="eventForm">
                 <label for="event">Event:</label>
@@ -56,9 +57,11 @@
                 <button type="submit" id="submitbtn">Add Event</button>
             </form>
         </section>
-        <section id="settings">
+        <section id="settings" class="card">
             <h2>Settings</h2>
-            <p></p>
+            <input type="checkbox" id="darkModeToggle">
+            <label for="darkModeToggle">Dark Mode</label>
+        
         </section>
                 
     </main>
