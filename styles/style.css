@@ -37,7 +37,7 @@ nav a:hover {
     background-color: rgba(0, 102, 255, 0.671);
     color: white;
 }
-.main {
+#main {
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
@@ -47,6 +47,10 @@ nav a:hover {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
+    display: none;
+}
+.card.active {
+    display: block;
 }
 h2 {
     color: rgb(124, 58, 237);

@@ -1,3 +1,14 @@
+const sections = document.querySelectorAll("section");
+
+function showSection(id) {
+  sections.forEach(function (sec) {
+    sec.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
+showSection("about");
+
 const submit = document.getElementById("submitbtn");
 const tbody = document.getElementById("tbody");
 let records = [];
@@ -8,27 +19,16 @@ submit.onclick = function (e) {
   const rec = {
     id: Date.now(),
     eventname: document.getElementById("event").value,
-    deadline: document.getElementById("dueDate").value,
+    duedate: document.getElementById("dueDate").value,
     duration: document.getElementById("duration").value,
     tag: document.getElementById("tag").value,
   };
 
+  if (!eventregex(rec.eventname)) return;
+  if (!duedateregex(rec.duedate)) return;
+  if (!durationregex(rec.duration)) return;
+  if (!tagregex(rec.tag)) return;
+
   records.push(rec);
-  showrecords();
+  showrecords(records, tbody);
 };
-
-function showrecords() {
-  tbody.innerHTML = "";
-
-  records.forEach(function (r) {
-    tbody.innerHTML += `
-      <tr>
-        <td>${r.eventname}</td>
-        <td>${r.deadline}</td>
-        <td>${r.duration}</td>
-        <td>${r.tag}</td>
-      </tr>
-      
-    `;
-  });
-}
