@@ -1,15 +1,19 @@
 window.showrecords = function (records, tbody) {
-  tbody.innerHTML = "";
+  let html = "";
 
   records.forEach(function (r) {
-    tbody.innerHTML += `
+    html += `
       <tr>
         <td>${r.eventname}</td>
         <td>${r.duedate}</td>
         <td>${r.duration}</td>
         <td>${r.tag}</td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
       </tr>
-      
     `;
   });
-}
+  tbody.innerHTML = html;
+};

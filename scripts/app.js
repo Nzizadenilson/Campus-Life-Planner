@@ -31,4 +31,15 @@ submit.onclick = function (e) {
 
   records.push(rec);
   showrecords(records, tbody);
+
+  document.getElementById("eventForm").reset();
+  alert("Event added successfully");
 };
+const searchInput = document.getElementById("search");
+searchInput.addEventListener("input", function () {
+  const searchedword = searchInput.value;
+
+  const filtered = filterRecords(records, searchedword);
+
+  showrecords(filtered, tbody);
+});

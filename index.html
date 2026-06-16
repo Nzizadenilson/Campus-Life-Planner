@@ -18,6 +18,7 @@
       <a href="#settings" onclick="showSection('settings')">Settings</a>
     </nav>
     <main id="main">
+      <div id="status" role="status" aria-live="polite"></div>
       <section id="about" class="card">
         <h2>About</h2>
         <p>
@@ -32,6 +33,7 @@
       </section>
       <section id="records" class="card">
         <h2>Records</h2>
+        <input type="search" id="search" name="search"></input>
         <table>
           <thead>
             <tr>
@@ -67,6 +69,7 @@
     </main>
     <script src="scripts/validators.js"></script>
     <script src="scripts/ui.js"></script>
+    <script src="scripts/search.js"></script>
     <script src="scripts/app.js"></script>
   </body>
 </html>
