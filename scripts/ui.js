@@ -9,8 +9,8 @@ window.showrecords = function (records, tbody) {
         <td>${r.duration}</td>
         <td>${r.tag}</td>
         <td>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button onclick="editRecord(${r.id})">Edit</button>
+          <button onclick="deleteRecord(${r.id})">Delete</button>
         </td>
       </tr>
     `;

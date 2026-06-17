@@ -11,7 +11,12 @@ showSection("about");
 
 const submit = document.getElementById("submitbtn");
 const tbody = document.getElementById("tbody");
-let records = [];
+let records = JSON.parse(localStorage.getItem("records")) || [];
+let editId = null;
+
+function saveRecords() {
+  localStorage.setItem("records", JSON.stringify(records));
+}
 
 submit.onclick = function (e) {
   e.preventDefault();
@@ -29,11 +34,33 @@ submit.onclick = function (e) {
   if (!window.durationregex(rec.duration)) return;
   if (!window.tagregex(rec.tag)) return;
 
-  records.push(rec);
+  const isEditing = editId !== null;
+
+  if (editId === null) {
+    records.push(rec);
+  } else {
+    const index = records.findIndex(function (r) {
+      return r.id === editId;
+    });
+
+    rec.id = editId;
+
+    records[index] = rec;
+
+    editId = null;
+
+    document.getElementById("submitbtn").textContent = "Add Event";
+  }
+  saveRecords();
   showrecords(records, tbody);
+  updateDashboard();
 
   document.getElementById("eventForm").reset();
-  alert("Event added successfully");
+  if (isEditing) {
+    alert("Event updated successfully");
+  } else {
+    alert("Event added successfully");
+  }
 };
 const searchInput = document.getElementById("search");
 searchInput.addEventListener("input", function () {
@@ -68,4 +95,72 @@ sortSelect.addEventListener("change", function () {
   }
 
   showrecords(sorted, tbody);
+  updateDashboard();
 });
+
+window.deleteRecord = function (id) {
+  const confirmed = confirm("Are you sure you want to delete this event?");
+
+  if (confirmed) {
+    records = records.filter(function (record) {
+      return record.id !== id;
+    });
+
+    saveRecords();
+    showrecords(records, tbody);
+    updateDashboard();
+  }
+};
+
+window.editRecord = function (id) {
+  const record = records.find(function (r) {
+    return r.id === id;
+  });
+
+  editId = id;
+
+  document.getElementById("event").value = record.eventname;
+  document.getElementById("dueDate").value = record.duedate;
+  document.getElementById("duration").value = record.duration;
+  document.getElementById("tag").value = record.tag;
+  document.getElementById("submitbtn").textContent = "Update Event";
+
+  showSection("addevent");
+};
+
+function updateDashboard() {
+  document.getElementById("totalEvents").textContent = records.length;
+
+  let totalDuration = 0;
+
+  records.forEach(function (record) {
+    totalDuration += Number(record.duration);
+  });
+
+  document.getElementById("totalDuration").textContent = totalDuration;
+
+  const tags = {};
+
+  records.forEach(function (record) {
+    if (tags[record.tag]) {
+      tags[record.tag]++;
+    } else {
+      tags[record.tag] = 1;
+    }
+  });
+
+  let topTag = "-";
+  let maxCount = 0;
+
+  for (let tag in tags) {
+    if (tags[tag] > maxCount) {
+      maxCount = tags[tag];
+      topTag = tag;
+    }
+  }
+
+  document.getElementById("topTag").textContent = topTag;
+}
+
+showrecords(records, tbody);
+updateDashboard();
