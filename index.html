@@ -6,20 +6,25 @@
     <title>Campus Life Planner</title>
     <link rel="stylesheet" href="styles/style.css" />
   </head>
+  
   <body>
+
     <header id="header">
       <h1>Campus Life Planner</h1>
     </header>
-    <nav>
+    
+    <nav aria-label="Primary Navigation">
       <a href="#about" onclick="showSection('about')">About</a>
       <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
       <a href="#records" onclick="showSection('records')">Records</a>
       <a href="#addevent" onclick="showSection('addevent')">Add Event</a>
       <a href="#settings" onclick="showSection('settings')">Settings</a>
     </nav>
+    
     <main id="main">
+      
       <div id="status" role="status" aria-live="polite"></div>
-      <section id="about" class="card">
+      <section id="about" class="card active">
         <h2>About</h2>
         <p>
           Welcome to the Campus Life Planner! This is a simple application to
@@ -27,13 +32,27 @@
         </p>
         <p>Email: g.nziza@alustudent.com, Github: https://github.com/</p>
       </section>
+      
       <section id="dashboard" class="card">
         <h2>Dashboard</h2>
-        <p></p>
+        <p>Total Events: <span id="totalEvents">0</span></p>
+        <p>Total Duration: <span id="totalDuration">0</span></p>
+        <p>Top Tag: <span id="topTag">-</span></p>
+
+        <div id="chart"></div>
       </section>
+      
       <section id="records" class="card">
         <h2>Records</h2>
+        <label for="search">Regex search</label>
         <input type="search" id="search" name="search"></input>
+
+        <select id="sort">
+          <option value="event">Event A-Z</option>
+          <option value="date">Due date</option>
+          <option value="duration">Duration</option>
+        </select>
+
         <table>
           <thead>
             <tr>
@@ -47,6 +66,7 @@
           <tbody id="tbody"></tbody>
         </table>
       </section>
+      
       <section id="addevent" class="card">
         <h2>Add Event</h2>
         <form id="eventForm">
@@ -61,15 +81,21 @@
           <button type="submit" id="submitbtn">Add Event</button>
         </form>
       </section>
+      
       <section id="settings" class="card">
         <h2>Settings</h2>
-        <input type="checkbox" id="darkModeToggle" />
-        <label for="darkModeToggle">Dark Mode</label>
+       
+        <label>
+           <input type="checkbox" id="darkModeToggle" />
+          Dark Mode
+        </label>
       </section>
     </main>
+    
     <script src="scripts/validators.js"></script>
     <script src="scripts/ui.js"></script>
     <script src="scripts/search.js"></script>
     <script src="scripts/app.js"></script>
+  
   </body>
 </html>

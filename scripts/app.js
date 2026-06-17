@@ -24,10 +24,10 @@ submit.onclick = function (e) {
     tag: document.getElementById("tag").value,
   };
 
-  if (!eventregex(rec.eventname)) return;
-  if (!duedateregex(rec.duedate)) return;
-  if (!durationregex(rec.duration)) return;
-  if (!tagregex(rec.tag)) return;
+  if (!window.eventregex(rec.eventname)) return;
+  if (!window.duedateregex(rec.duedate)) return;
+  if (!window.durationregex(rec.duration)) return;
+  if (!window.tagregex(rec.tag)) return;
 
   records.push(rec);
   showrecords(records, tbody);
@@ -42,4 +42,30 @@ searchInput.addEventListener("input", function () {
   const filtered = filterRecords(records, searchedword);
 
   showrecords(filtered, tbody);
+});
+
+const sortSelect = document.getElementById("sort");
+sortSelect.addEventListener("change", function () {
+  const value = sortSelect.value;
+  let sorted = [...records];
+
+  if (value === "event") {
+    sorted.sort(function (a, b) {
+      return a.eventname.localeCompare(b.eventname);
+    });
+  }
+
+  if (value === "date") {
+    sorted.sort(function (a, b) {
+      return new Date(a.duedate) - new Date(b.duedate);
+    });
+  }
+
+  if (value === "duration") {
+    sorted.sort(function (a, b) {
+      return Number(a.duration) - Number(b.duration);
+    });
+  }
+
+  showrecords(sorted, tbody);
 });
