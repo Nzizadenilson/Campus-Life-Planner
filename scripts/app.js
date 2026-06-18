@@ -65,7 +65,7 @@ submit.onclick = function (e) {
   if (isEditing) {
     alert("Event updated successfully");
   } else {
-    alert("Event added successfully");
+    document.getElementById("status").textContent = "Event added successfully";
   }
 };
 const searchInput = document.getElementById("search");
