@@ -35,9 +35,9 @@
       
       <section id="dashboard" class="card">
         <h2>Dashboard</h2>
-        <p>Total Events: <span id="totalEvents">0</span></p>
-        <p>Total Duration: <span id="totalDuration">0</span></p>
-        <p>Top Tag: <span id="topTag">-</span></p>
+        <div class="stat-box"><div class="stat-label">Total Events</div><div class="stat-value" id="totalEvents">0</div></div>
+        <div class="stat-box"><div class="stat-label">Total Duration</div><div class="stat-value" id="totalDuration">0</div></div>
+        <div class="stat-box"><div class="stat-label">Top Tag</div><div class="stat-value" id="topTag">-</div></div>
 
         <div id="chart"></div>
       </section>
@@ -60,6 +60,8 @@
               <th>Due date</th>
               <th>Duration</th>
               <th>Tag</th>
+              <th>Created</th>
+              <th>Updated</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -84,7 +86,8 @@
       
       <section id="settings" class="card">
         <h2>Settings</h2>
-       
+        <button id="exportBtn">Export JSON</button>
+        <input type="file" id="importFile" accept=".json" />
         <label>
            <input type="checkbox" id="darkModeToggle" />
           Dark Mode

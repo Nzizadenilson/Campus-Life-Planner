@@ -21,12 +21,15 @@ function saveRecords() {
 submit.onclick = function (e) {
   e.preventDefault();
 
+  const now = new Date().toISOString();
   const rec = {
     id: Date.now(),
     eventname: document.getElementById("event").value,
     duedate: document.getElementById("dueDate").value,
     duration: document.getElementById("duration").value,
     tag: document.getElementById("tag").value,
+    createdAt: now,
+    updatedAt: now,
   };
 
   if (!window.eventregex(rec.eventname)) return;
@@ -43,8 +46,11 @@ submit.onclick = function (e) {
       return r.id === editId;
     });
 
-    rec.id = editId;
+    const oldRecord = records[index];
 
+    rec.id = editId;
+    rec.createdAt = oldRecord.createdAt;
+    rec.updatedAt = new Date().toISOString();
     records[index] = rec;
 
     editId = null;
