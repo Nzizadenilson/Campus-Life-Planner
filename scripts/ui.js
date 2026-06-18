@@ -18,7 +18,7 @@ window.showrecords = function (records, tbody) {
       <tr>
         <td>${r.eventname}</td>
         <td>${r.duedate}</td>
-        <td>${r.duration}</td>
+        <td>${getDuration(r.duration)}</td>
         <td>${r.tag}</td>
         <td>${r.createdAt ? new Date(r.createdAt).toLocaleString() : "-"}</td>
         <td>${r.updatedAt ? new Date(r.updatedAt).toLocaleString() : "-"}</td>

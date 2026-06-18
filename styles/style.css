@@ -188,43 +188,8 @@ button:active {
     width: 90%;
   }
 }
-
-body.dark {
-  background-color: #0a0818;
-  color: #e2dffe;
-}
-
-body.dark .card {
-  background-color: #120f2e;
-  border-color: #2e2a6e;
-  color: #e2dffe;
-}
-
-body.dark nav {
-  background-color: #080614;
-}
-
-body.dark nav a {
-  color: #a5b4fc;
-}
-
-body.dark input,
-body.dark select {
-  background-color: #1a1640;
-  border-color: #3730a3;
-  color: #e2dffe;
-}
-
-body.dark th {
-  background-color: #1e1b4b;
-  color: #c7d2fe;
-}
-
-body.dark td {
-  border-color: #2e2a6e;
-}
 .stat-box {
-  background-color: #f4f3ff;
+  background-color: rgb(244, 243, 255);
   border-radius: 10px;
   padding: 14px 16px;
   margin-bottom: 10px;
@@ -232,7 +197,7 @@ body.dark td {
 
 .stat-label {
   font-size: 11px;
-  color: #6366f1;
+  color: rgb(99, 102, 241);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -242,5 +207,24 @@ body.dark td {
 .stat-value {
   font-size: 26px;
   font-weight: 600;
-  color: #1e1b4b;
+  color: rgb(30, 27, 75);
+}
+
+#chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-top: 16px;
+  padding: 10px;
+  background: #f4f3ff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#chart .bar {
+  flex: 1;
+  background-color: #6366f1;
+  border-radius: 4px 4px 0 0;
+  max-height: 100px;
 }

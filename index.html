@@ -41,7 +41,7 @@
 
         <div id="chart"></div>
       </section>
-      
+    
       <section id="records" class="card">
         <h2>Records</h2>
         <label for="search">Regex search</label>
@@ -89,8 +89,10 @@
         <button id="exportBtn">Export JSON</button>
         <input type="file" id="importFile" accept=".json" />
         <label>
-           <input type="checkbox" id="darkModeToggle" />
-          Dark Mode
+        <input type="radio" name="durationUnit" value="minutes" checked /> Minutes
+        </label>
+        <label>
+        <input type="radio" name="durationUnit" value="hours" /> Hours
         </label>
       </section>
     </main>
@@ -98,6 +100,7 @@
     <script src="scripts/validators.js"></script>
     <script src="scripts/ui.js"></script>
     <script src="scripts/search.js"></script>
+    <script src="scripts/storage.js"></script>
     <script src="scripts/app.js"></script>
   
   </body>

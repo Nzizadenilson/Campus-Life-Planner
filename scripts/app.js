@@ -134,6 +134,14 @@ window.editRecord = function (id) {
   showSection("addevent");
 };
 
+function getDuration(minutes) {
+  const unit = document.querySelector('input[name="durationUnit"]:checked').value;
+  if (unit === "hours") {
+    return (Number(minutes) / 60).toFixed(1) + "h";
+  }
+  return minutes + "min";
+}
+
 function updateDashboard() {
   document.getElementById("totalEvents").textContent = records.length;
 
@@ -143,7 +151,7 @@ function updateDashboard() {
     totalDuration += Number(record.duration);
   });
 
-  document.getElementById("totalDuration").textContent = totalDuration;
+  document.getElementById("totalDuration").textContent = getDuration(totalDuration);
 
   const tags = {};
 
@@ -166,7 +174,64 @@ function updateDashboard() {
   }
 
   document.getElementById("topTag").textContent = topTag;
+
+ const chart = document.getElementById("chart");
+chart.innerHTML = "";
+
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+
+const counts = {
+  Sun: 0,
+  Mon: 0,
+  Tue: 0,
+  Wed: 0,
+  Thu: 0,
+  Fri: 0,
+  Sat: 0,
+};
+
+
+records.forEach(function (record) {
+  const date = new Date(record.duedate);
+  const day = days[date.getDay()];
+  counts[day]++;
+});
+
+days.forEach(function (day) {
+  const p = document.createElement("p");
+  p.textContent = day + ": " + counts[day] + " event(s)";
+  chart.appendChild(p);
+});
 }
 
 showrecords(records, tbody);
 updateDashboard();
+
+document.getElementById("exportBtn").addEventListener("click", function () {
+  exportJSON(records);
+});
+
+document.getElementById("importFile").addEventListener("change", function (e) {
+  importJSON(e.target.files[0], function (data) {
+    records = data;
+
+    saveRecords();
+
+    showrecords(records, tbody);
+
+    updateDashboard();
+
+    document.getElementById("status").textContent =
+      "Data imported successfully";
+  });
+});
+
+document.querySelectorAll('input[name="durationUnit"]').forEach(function(radio) {
+  radio.addEventListener("change", function() {
+    showrecords(records, tbody);
+    updateDashboard();
+  });
+});
+
+
