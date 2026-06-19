@@ -16,10 +16,10 @@ window.showrecords = function (records, tbody) {
   records.forEach(function (r) {
     html += `
       <tr>
-        <td>${r.eventname}</td>
+        <td>${highlight(r.eventname, regex)}</td>
         <td>${r.duedate}</td>
         <td>${getDuration(r.duration)}</td>
-        <td>${r.tag}</td>
+        <td>${highlight(r.tag, regex)}</td>
         <td>${r.createdAt ? new Date(r.createdAt).toLocaleString() : "-"}</td>
         <td>${r.updatedAt ? new Date(r.updatedAt).toLocaleString() : "-"}</td>
         <td>

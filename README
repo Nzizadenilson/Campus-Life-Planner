@@ -1,0 +1,246 @@
+# Campus Life Planner
+
+## Overview
+
+Campus Life Planner is a vanilla JavaScript web application designed to help users manage campus events and activities. It allows users to create, edit, delete, search, and organize event records while practicing advanced JavaScript concepts such as regex validation, DOM manipulation, localStorage persistence, and dynamic UI updates.
+
+The application follows a modular structure using separate JavaScript files for validation, UI rendering, search functionality, and data storage.
+
+---
+
+## Live Demo
+
+GitHub Pages Link: (add your deployed link here)
+
+---
+
+## Author
+
+Name: Nzizadenilson  
+Email: g.nziza@alustudent.com  
+GitHub: https://github.com/Nzizadenilson  
+
+---
+
+## Features
+
+### Core Functionality
+
+- Create new campus events
+- Edit existing events
+- Delete events with confirmation
+- Persistent storage using localStorage
+- Auto-saving of all changes
+- Import and export data using JSON files
+
+### Event Fields
+
+Each event contains:
+- Unique ID
+- Event name
+- Due date
+- Duration
+- Tag
+- Created timestamp
+- Updated timestamp
+
+---
+
+## Regex Validation
+
+The application uses regular expressions to validate all user inputs.
+
+### Event Name Validation
+
+- No leading or trailing spaces
+- No multiple spaces
+- No duplicate words
+
+Pattern:
+^\S(?:.*\S)?$
+\b(\w+)\s+\1\b
+
+---
+
+### Due Date Validation
+
+Ensures correct format YYYY-MM-DD and valid ranges.
+
+Pattern:
+^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$
+
+---
+
+### Duration Validation
+
+Allows only numeric values with up to two decimal places.
+
+Pattern:
+^(0|[1-9]\d*)(\.\d{1,2})?$
+
+---
+
+### Tag Validation
+
+Allows only letters, spaces, and hyphens.
+
+Pattern:
+^[A-Za-z]+(?:[ -][A-Za-z]+)*$
+
+---
+
+## Advanced Regex Feature
+
+The application includes an advanced regex feature to detect duplicate words using back-references:
+
+\b(\w+)\s+\1\b
+
+This helps prevent invalid repeated input such as "Gym Gym".
+
+---
+
+## Search Functionality
+
+- Supports live regex-based search
+- Case-insensitive matching
+- Safe regex compilation using try/catch
+- Fallback to normal text search when regex is invalid
+- Filters by event name and tag
+- Displays highlighted matches using <mark>
+
+---
+
+## Data Storage
+
+- Uses browser localStorage
+- Data automatically persists after every change
+- No backend required
+
+Storage Key:
+records
+
+---
+
+## Import and Export
+
+### Export
+- Downloads all records as a JSON file
+- File name: campus-data.json
+
+### Import
+- Accepts JSON file upload
+- Validates that data is an array
+- Safely loads records into the application
+
+---
+
+## Sorting Features
+
+Users can sort records by:
+- Event name (A–Z)
+- Due date (ascending)
+- Duration (numeric ascending)
+
+---
+
+## Dashboard Features
+
+The dashboard displays:
+
+- Total number of events
+- Total duration (converted to selected unit)
+- Most frequent tag
+- Weekly distribution chart (based on due date)
+
+---
+
+## Units System
+
+Supports duration display in:
+- Minutes
+- Hours (converted from minutes)
+
+---
+
+## Accessibility
+
+The project includes accessibility improvements:
+
+- Semantic HTML structure (header, nav, main, section, footer)
+- ARIA live region for status messages
+- Keyboard-friendly form controls
+- Visible focus indicators
+- Proper label associations for inputs
+
+---
+
+## Keyboard Support
+
+- Navigation through sections using menu links
+- Form submission using Enter key
+- Button-based actions for edit and delete
+
+---
+
+## Testing
+
+A custom test suite is included in tests.html.
+
+It verifies:
+- Regex validation rules
+- Advanced duplicate word detection
+- Search filtering logic
+- Error handling for invalid inputs
+
+To run tests:
+Open tests.html in a browser.
+
+---
+
+## Project Structure
+
+index.html  
+styles/style.css  
+scripts/app.js  
+scripts/ui.js  
+scripts/validators.js  
+scripts/search.js  
+scripts/storage.js  
+tests.html  
+seed.json (optional)
+
+---
+
+## How to Run the Project
+
+1. Download or clone the repository
+2. Open index.html in a browser
+3. Start adding events
+4. Data will automatically save in the browser
+
+---
+
+## GitHub Pages Deployment
+
+### Steps:
+
+1. Push project to GitHub repository
+2. Go to repository settings
+3. Open "Pages" section
+4. Under Source select:
+   - Branch: main
+   - Folder: root
+5. Save and wait a few minutes
+
+Your site will be available at:
+
+https://Nzizadenilson.github.io/campus-life-planner/
+
+---
+
+## Notes
+
+- This project uses only vanilla JavaScript (no frameworks)
+- Fully client-side application
+- Designed for learning regex, DOM manipulation, and state management
+- All data is stored locally in the browser
