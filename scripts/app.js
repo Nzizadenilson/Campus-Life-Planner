@@ -9,6 +9,17 @@ function showSection(id) {
 }
 showSection("about");
 
+function setStatus(message, type) {
+  const status = document.getElementById("status");
+  status.textContent = message;
+  status.classList.remove("status-error", "status-success");
+  if (type) {
+    status.classList.add("status-" + type);
+  }
+}
+
+window.setStatus = setStatus;
+
 const submit = document.getElementById("submitbtn");
 const tbody = document.getElementById("tbody");
 let records = JSON.parse(localStorage.getItem("records")) || [];
@@ -63,7 +74,7 @@ submit.onclick = function (e) {
 
   document.getElementById("eventForm").reset();
   if (isEditing) {
-    alert("Event updated successfully");
+    setStatus("Event updated successfully", "success");
   } else {
     document.getElementById("status").textContent = "Event added successfully";
   }

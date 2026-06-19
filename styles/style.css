@@ -49,11 +49,36 @@ body {
   background-color: #f4f3ff;
   color: #1e1b4b;
   line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 #main {
   width: 90%;
   max-width: 1200px;
   margin: 20px auto;
+  flex: 1;
+}
+#status {
+  min-height: 1.2em;
+}
+#status.status-error {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+#status.status-success {
+  color: #15803d;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-weight: 600;
 }
 .card {
   background-color: #ffffff;
@@ -227,4 +252,18 @@ button:active {
   background-color: #6366f1;
   border-radius: 4px 4px 0 0;
   max-height: 100px;
+}
+
+footer {
+  background-color: #0f0a2e;
+  color: #a5b4fc;
+  text-align: center;
+  padding: 16px 20px;
+  margin-top: 0;
+  border-top: 2px solid #4338ca;
+  font-size: 13px;
+}
+
+footer p {
+  margin: 0;
 }

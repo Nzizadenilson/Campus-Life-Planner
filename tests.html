@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tests</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f3ff; color: #1e1b4b; }
+    h1 { font-size: 1.4rem; margin-bottom: 10px; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 6px 10px; margin-bottom: 4px; border-radius: 4px; }
+    .pass { background: #e6ffed; color: #15803d; }
+    .fail { background: #ffe6e6; color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <h1>Tests</h1>
+  <p id="summary"></p>
+  <ul id="output"></ul>
+
+  <script src="scripts/validators.js"></script>
+  <script src="scripts/search.js"></script>
+
+  <script>
+    let passed = 0;
+    let failed = 0;
+    const output = document.getElementById("output");
+
+    function test(name, condition) {
+      const li = document.createElement("li");
+      if (condition) {
+        li.textContent = "PASS: " + name;
+        li.className = "pass";
+        passed++;
+      } else {
+        li.textContent = "FAIL: " + name;
+        li.className = "fail";
+        failed++;
+      }
+      output.appendChild(li);
+    }
+
+    let lastStatusMessage = null;
+    let lastStatusType = null;
+    window.setStatus = function (message, type) {
+      lastStatusMessage = message;
+      lastStatusType = type;
+    };
+    window.alert = function () {};
+
+    test("good event name is accepted", eventregex("Study Session") === true);
+    test("leading space is rejected", eventregex(" Study Session") === false);
+
+    test("duplicate word is rejected (advanced regex)", eventregex("Gym Gym") === false);
+
+    test("whole number duration is accepted", durationregex("120") === true);
+    test("text duration is rejected", durationregex("abc") === false);
+
+    test("correct date format is accepted", duedateregex("2026-06-20") === true);
+    test("wrong date format is rejected", duedateregex("06/20/2026") === false);
+
+    test("simple tag is accepted", tagregex("Health") === true);
+    test("tag with numbers is rejected", tagregex("Health1") === false);
+
+    lastStatusMessage = null;
+    lastStatusType = null;
+    durationregex("abc");
+    test(
+      "an invalid duration shows an error message",
+      lastStatusType === "error" && !!lastStatusMessage,
+    );
+
+    lastStatusMessage = null;
+    lastStatusType = null;
+    duedateregex("06/20/2026");
+    test(
+      "an invalid due date now shows an error message too",
+      lastStatusType === "error" && !!lastStatusMessage,
+    );
+
+    const records = [
+      { eventname: "Study JavaScript", tag: "Study" },
+      { eventname: "Gym Workout", tag: "Health" },
+    ];
+    test("search finds a matching record", filterRecords(records, "gym").length === 1);
+    test("search with no match returns nothing", filterRecords(records, "zzz").length === 0);
+
+    document.getElementById("summary").textContent = passed + " passed, " + failed + " failed";
+  </script>
+</body>
+</html>
